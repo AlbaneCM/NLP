@@ -281,8 +281,6 @@ The F1 score highly decreased compared to the Random Forest model. Indeed, the m
 
 However the actual positive tweets predicted decreased to 8%. This model cannot be kept at the best one.
 
-![](images/knn_cfn_matrix.PNG)
-
 <p align="center">
   <img src="images/knn_cfn_matrix.PNG" />
 </p>
