@@ -16,7 +16,6 @@
 
 
 
-
 <a id='overview'></a>
 ## 1. Overview
 
@@ -397,7 +396,7 @@ To generate buzz around the launch of Samsung's new folding tablet, consider imp
 These refined strategies aim to capture the essence of successful past events, combining physical presence, technological innovation, social media engagement, and exclusive experiences to maximize the impact of the tablet launch at the SXSW conference.
 
 
-
+<a id='limits_n_next_steps'></a>
 ## 8. Limits & Next Steps
 
 Despite providing us a good idea for recommendations, the accuracy and F1 score remain low, we would aim at reaching above 70%. 
