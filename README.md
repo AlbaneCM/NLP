@@ -73,7 +73,7 @@ The tweet's sentiment is the target for the dataset. The specific column is `is_
 ### 4. 1- Data Cleaning
 In the first part of data preparation, the typical data cleaning tasks are addressed before splitting the set between train and test data. The steps include:
 
-    a) Column names' change
+  <br>a) Column names' change
   The column names are particularly long. For an easier process to handle, they will be renamed in the new DataFrame called `df`:
 * `tweet`
 * `product_or_company`
