@@ -160,11 +160,10 @@ All models went through 4 steps:
 
 Here is a summary of results of all models.
 
-![](images/all_models.png)
-
 <p align="center">
-  <img src="images/all_models.png" />
+  <img src="images/total.png" />
 </p>
+
 
 
 ### TfidfVectorizer and Random Forest
