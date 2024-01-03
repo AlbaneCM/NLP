@@ -75,7 +75,7 @@ In the first part of data preparation, the typical data cleaning tasks are addre
 
 
   <br>a) Column names' change
-    <br>The column names are particularly long. For an easier process to handle, they will be renamed in the new DataFrame called `df`: `tweet`; * `product_or_company`; * `sentiment`
+    <br>The column names are particularly long. For an easier process to handle, they will be renamed in the new DataFrame called `df`: `tweet`; `product_or_company`; `sentiment`
   <br>b) Missing data was either dropped or replaced by 'undefined'
   <br>c) Duplicates were dropped
   <br>d) Sentiment classification was turned into a binary one
@@ -161,6 +161,10 @@ All models went through 4 steps:
 Here is a summary of results of all models.
 
 ![](images/all_models.png)
+
+<p align="center">
+  <img src="images/all_models.png" />
+</p>
 
 
 ### TfidfVectorizer and Random Forest
