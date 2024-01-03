@@ -73,7 +73,7 @@ The tweet's sentiment is the target for the dataset. The specific column is `is_
 ### 4. 1- Data Cleaning
 In the first part of data preparation, the typical data cleaning tasks are addressed before splitting the set between train and test data. The steps include:
 
-  a)Column names' change<br>
+    a)Column names' change<br>
   The column names are particularly long. For an easier process to handle, they will be renamed in the new DataFrame called `df`:
 * `tweet`
 * `product_or_company`
@@ -86,7 +86,7 @@ In the first part of data preparation, the typical data cleaning tasks are addre
 <p align="center">
   <img src="images/tweets_per_sentiment.png" />
 </p>
-  <br>e) Train-Test Split was performed
+    <br>e) Train-Test Split was performed
   <br>The dataset is being divided into two separate subsets: a training set, and a testing (or validation) set. The validation set will allow to assess the performance of the model.
   The dataset is split before any further transformation is done to prevent data leakage. 
 
@@ -429,6 +429,7 @@ For additional info, contact [Albane Colmenares](mailto:albane.colmenares@gmail.
 ├── natural-language-processing.ipynb
 ├── presentation.pdf
 └── notebook.pdf
+└── github.pdf
 
 ```
-"# tripadvisor_sentiment" 
+
