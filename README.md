@@ -73,7 +73,7 @@ The tweet's sentiment is the target for the dataset. The specific column is `is_
 ### 4. 1- Data Cleaning
 In the first part of data preparation, the typical data cleaning tasks are addressed before splitting the set between train and test data. The steps include:
 
-    a)Column names' change<br>
+    a)Column names' change
   The column names are particularly long. For an easier process to handle, they will be renamed in the new DataFrame called `df`:
 * `tweet`
 * `product_or_company`
@@ -154,142 +154,22 @@ The models' parameters were tuned using the following approaches:
 2. Hyperparameter Tuning
     * Combinatoric Grid Searching
 
-
-
 All models went through 4 steps:
     1) Fitting and training on train data
     2) Evaluation Metrics 
     3) Classification Report
     4) Confusion Matrix
 
-
-
-### 5. a) Baseline Model with TfidfVectorizer and MultinomialNB
-
-### <u>1st iteration</u>: Tfidf Vectorizer with Pipeline 
-The evaluation metrics recorded for the 1st iteration were as follows:
-
-- Accuracy: 0.6724
-- F1-Score: 0.5407
-- Precision: 0.4521
-- Mean Cross-Validated Accuracy: 0.6726
-
-### <u>2nd iteration</u>: Addressing class imbalance: undersampling negative tweets
-The model does not have enough data for positive tweets, comparatively to negative ones. 
-
-As a consequence, the dataset needs to be resampled. More precisely, negative tweets need to be undersampled.
-
-Original class distribution:
-- negative    4575
-- positive    2227
-
-
-Class distribution after undersampling:
-- negative    2227
-- positive    2227
-
-
-Results for this model were:
-- Accuracy: 0.5692
-- F1-Score: 0.5806
-- Precision: 0.6030
-- Mean Cross-Validated Accuracy: 0.5706
-
-The accuracy score drastically decreased, but we now have a precision and f1 scores, indicating the 'positive sentiments' are now correctly represented.
-
-
-### <u>3rd iteration</u>: including stopwords
-We will now test fitting the vectorizer by removing the stopwords from tweets to review if this can help predictions be more accurate.
-
-- Accuracy: 0.5992
-- F1-Score: 0.6067
-- Precision: 0.6183
-- Mean Cross-Validated Accuracy: 0.6036
-
-The accuracy score now increased slightly, however it remains below just guessing the majority class.
-
-### <u>4th iteration</u>: Applying the full preprocessing to tweets
-
-- Accuracy: 0.5767
-- F1-Score: 0.5887
-- Precision: 0.6160
-- Mean Cross-Validated Accuracy: 0.5888
-
-All scores decreased, when applying the model on the full tokenized tweets.
-
-### <u>5th iteration</u>: Tuning Tfidf Vectorizer - Hyperparameter tuning
-
-The model performed better when stopwords were removed but worse when applied on the full tokenized tweets. Let's try to use combinatoric grid searching to find the best parameters for the vectorizer. 
-
-- Accuracy: 0.6631
-- F1-Score: 0.6711
-- Precision: 0.6886
-- Mean Cross-Validated Accuracy: 0.6491
-
-The classification metrics are starting to increase and are starting to show more stability, less disparity among one another.
-
+Here is a summary of results of all models.
 
 <p align="center">
-  <img src="images/tunedNB_cfn_matrix.PNG" />
-</p>
-
-### 5. b) TfidfVectorizer and Decision Trees
-### <u>6th iteration</u>: Decision Trees Tfidf Vectorizer
-
-Decision trees work well for understanding language because they are easy to interpret and handle the nuances in how words relate. They are good at understanding what words matter most and can deal with different types of word data without much difficulty. 
-
-
-For higher computing performance, the best parameters recorded on the vectorizer with Multinomial Naive Bayes will be kept. Only the classifier will be modified. Let's see if, by using the best TF-IDF parameters with another classifier, we can improve further these predictions.
-
-- Accuracy: 0.6750
-- F1-Score: 0.6721
-- Precision: 0.6697
-- Mean Cross-Validated Accuracy: 0.6632
-
-All scores slightly increased and remain consistent. Whether it is accuracy, F1, precision or the cross-validated accuracy, they are all in the 0.66 range as opposed to the previously recorded results. Cross-validated accuracy was in the 0.64 range, while precision was over 0.68.
-
-<p align="center">
-  <img src="images/dt_cfn_matrix.PNG" />
+  <img src="images/all_models.png" />
 </p>
 
 
-### 5. c) TfidfVectorizer and Random Forest
-### <u>7th iteration</u>: RandomForestClassifierTuning Tfidf Vectorizer
+### TfidfVectorizer and Random Forest
 
-Random Forest classifiers can be thought of as an extension of multiple decision trees working together together to understand language text.Let's see if, by using the best TFIDF parameters with another classifier, we can improve further these predictions.
-
-
-- Accuracy: 0.6918
-- F1-Score: 0.6796
-- Precision: 0.6760
-- Mean Cross-Validated Accuracy: 0.6861
-
-The overall scores increased, recording the highest F1 Score reached. The model still has difficulty identifying positive tweets due to the dataset imbalance.
-
-<p align="center">
-  <img src="images/confusion_matrix.png" />
-</p>
-
-
-### 5. d) TfidfVectorizer and K-Nearest Neighbor
-### <u>8th iteration</u>: TfidfVectorizer and K-Nearest Neighbor
-
-The previous model was a bit computationally expensive. Let's see if the simpler K-Nearest Neighbor classifier would improve on that end. Nevertheless, kNN makes predictions based on what similar cases around it suggest so there is a risk it captures more noise created by the imbalanced dataset, despite the undersampled negative tweets.
-
-- Accuracy: 0.6839
-- F1-Score: 0.5890
-- Precision: 0.6703
-- Mean Cross-Validated Accuracy: 0.6813
-
-
-The F1 score highly decreased compared to the Random Forest model. Indeed, the model correctly predicted 98% of negative tweets as negative - which makes sense: kNN looks at similar cases to make predictions.
-
-However the actual positive tweets predicted decreased to 8%. This model cannot be kept at the best one.
-
-<p align="center">
-  <img src="images/knn_cfn_matrix.PNG" />
-</p>
-
+The best scores were recorded from the Random Forest model: the highest F1 Score was reached. The model still has difficulty identifying positive tweets due to the dataset imbalance.
 
 
 <a id='evaluation'></a>
@@ -313,9 +193,6 @@ All key classification metrics from the best models were stored into 3 variables
 
 
 * Evaluation Metrics on Unseen Data
- -  Accuracy: 0.6918
- -  F1-Score: 0.6796
- -  Precision: 0.6760
  -  Mean Cross-Validated Accuracy: 0.6631
 
 The model is slightly overfitting, which suggests that the model may be capturing noise in the training data that doesn't generalize well to unseen data. This might be due to undersampling of negative tweets. 
@@ -337,13 +214,13 @@ Looking at the details by metric:
 
 <u>F1-Score</u>:
 
-`F1-score` is the harmonic mean of precision and recall. It was defined as the main metric for this project, as the cost of false negative and false positive was similar, in the sense that both positive and negative tweets need to be accurately predicted. 
+`F1-score` is the mean of precision and recall. It was defined as the main metric for this project, as the cost of false negative and false positive was similar, in the sense that both positive and negative tweets need to be accurately predicted. 
 
 The average weighted score recorded for F1 for the random forest model was the highest recorded, despite a larger disparity between F1 score for positive tweets and for negative tweets are more accurately predicted than positive tweets, which provides better scores for negative tweets than positive on all fronts, F1 being one of them. 
 
 <u>Precision</u>:
 
-`Precision` measures the accuracy of the positive predictions made by the model. Precision focuses on minimizing false positives. A high precision indicates that when the model predicts a positive class, it is likely to be correct. This balances a lower recall for positive tweets, since about 54% of positive tweets predicted as positive, are likely to be correctly identified as such. 
+`Precision` measures the accuracy of the positive predictions made by the model. Precision focuses on minimizing false positives. This balances a lower recall for positive tweets, since about 54% of positive tweets predicted as positive, are likely to be correctly identified as such. 
 
 <u>Recall</u>:
 
@@ -415,7 +292,7 @@ To do this in the future we would:
 
 
 ## For More Information 
-See the full analysis and code in the [Jupyter Notebook](notebook.pdf) as well as summary in this [presentation](presentation.pdf).
+See the full analysis and code in the [Jupyter Notebook](pdfs\notebook.pdf) as well as summary in this [presentation](pdfs\presentation.pdf).
 
 
 For additional info, contact [Albane Colmenares](mailto:albane.colmenares@gmail.com?subject=[GitHub]%20Source%20Han%20Sans)
@@ -427,9 +304,7 @@ For additional info, contact [Albane Colmenares](mailto:albane.colmenares@gmail.
 ├── .gitignore
 ├── README.md
 ├── natural-language-processing.ipynb
-├── presentation.pdf
-└── notebook.pdf
-└── github.pdf
+├── pdfs
 
 ```
 
